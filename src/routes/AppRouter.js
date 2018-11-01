@@ -8,21 +8,23 @@ class AppRouter extends React.Component
     render  ()
     {
         return (
-            <div>
-              
+          
+            <fragment>        
  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 <a className="navbar-brand" id="atag" href="#">FriendsBook</a>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div className="dropdown">
+  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Dropdown button
   </button>
+ 
   <BrowserRouter>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#"><Link to="/">Level 1</Link></a>
-    <a class="dropdown-item" href="#"><Link to="/next-page">Level 2</Link></a>
-    <a class="dropdown-item" href="#"><Link to="/next-page2">Level 3</Link></a>
-  </div></BrowserRouter>
-</div>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a className="dropdown-item" href="#"><Link to="/">Level 1</Link></a>
+    <a className="dropdown-item" href="#"><Link to="/next-page">Level 2</Link></a>
+    <a className="dropdown-item" href="#"><Link to="/next-page2">Level 3</Link></a>
+  </div></BrowserRouter></div>
+     
+
 </nav> 
 
             <BrowserRouter>
@@ -33,7 +35,7 @@ class AppRouter extends React.Component
             </Switch>
                  
             </BrowserRouter>
-            </div>
+            </fragment>
         );
     }
 }

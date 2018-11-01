@@ -13,7 +13,14 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={value:'',userData:[],isUserExists:false,detail:""};
+    this.state={
+      email:'',
+      name:'',
+      address:'',
+      contactNo:'',
+      userData:[],
+      isUserExists:false,
+      detail:""};
         // this.rowCallback = this.rowCallback.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -68,8 +75,17 @@ handleSubmit(event) {
         <Form className="form" onSubmit={this.handleSubmit}>
           <Col>
             <FormGroup id="formGroup">
-
-           <Label id="iconLabel"> <i className="fa fa-envelope" aria-hidden="true"></i></Label>
+           <Label><i className="fa fa-user-circle" aria-hidden="true"></i> </Label> 
+           <hr/>
+           {/* <Label id="iconLabel"> <i className="fa fa-font" aria-hidden="true"></i></Label>
+           <Label id="nameLabel">Name</Label>
+              <Input
+                type="text"
+                name="name"
+                id="exampleName"
+                placeholder="Enter Your name "
+              /> */}
+             <Label id="iconLabel"> <i className="fa fa-envelope" aria-hidden="true"></i></Label>
               <Label id="emailLabel">Email</Label>
               <Input
                 type="email"
@@ -79,6 +95,22 @@ handleSubmit(event) {
                 value={this.state.value}
                 onChange={this.handleChange}
               />
+               {/* <Label id="iconLabel"> <i className="fa fa-address-card" aria-hidden="true"></i></Label>
+               <Label id="addressLabel">Address</Label>
+              <Input
+                type="text"
+                name="name"
+                id="exampleName"
+                placeholder="Enter Your Address "
+              />
+              <Label><i className="fa fa-mobile" aria-hidden="true"></i></Label>
+               <Label id="contactLabel">Contact No</Label>
+              <Input
+                type="text"
+                name="name"
+                id="exampleName"
+                placeholder="Enter Your contact No "
+              /> */}
             </FormGroup>
           </Col>
         <Button className="btn btn-primary"  id="btn">Login</Button>

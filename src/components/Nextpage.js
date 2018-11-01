@@ -2,27 +2,34 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Card from './Card';
+import Grid from './Grid';
 
  export default class Nextpage extends React.Component {
     constructor(props){
         super(props)
-        this.state={userFriendListData:[]};
+        this.state={userFriendListData:[],userData:[],value:''};
         console.log("seciomf ",this.props.location.state.detail.id)
         axios.get(`http://localhost:8080/api/v1/user/getUserFriendById/${this.props.location.state.detail.id}`)
         .then(userFriendListResp=>{
             console.log("the friend list response from s",userFriendListResp.data)
         this.setState((state, props) => ({userFriendListData: userFriendListResp.data}));
-        });}
+        });
+        
+    }
+    
     render() {
-        return (
+         return (
+            
             console.log("in return ", this.props.location.state.detail.id),
-            <div className="container emp-profile">
+          <fragment>
+<div className="container emp-profile">
                 {/* <h1>User Details</h1> */}
                 <form method="post">
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="card">
-                                <img src={this.props.location.state.detail.userProfileImageUrl} alt="user image" style={{ width: "100%" }} />
+                            {(this.props.location.state.detail.userProfileImageUrl) ?(<img src={this.props.location.state.detail.userProfileImageUrl} alt="user image" style={{ width: "100%" }} />)
+                            :(<img src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt="user image" style={{ width: "100%" }}/>)}
                                 <h1>{this.props.location.state.detail.name}</h1>
                                 <p className="title">{this.props.location.state.detail.email}</p>
                                 <p>{this.props.location.state.detail.address}</p>
@@ -39,11 +46,11 @@ import Card from './Card';
          <div class="vl"></div>
                         <div className="col-md-6">
                             <div className="profile-head">
-                                <h1>Friends Suggestion</h1>
+                                <h1 id="style">Friends Suggestion</h1>
                                 <div className="col-md-6">
-                                  {console.log("the verify data is",this.state.userFriendListData)
-                                }
-                                {this.state.userFriendListData.map((friend, index) => <Card key={index} {...friend}/>)}  
+                                {console.log("checking user data ",this.state.userData)}
+                              {this.state.userFriendListData.length ?
+                                (this.state.userFriendListData.map((friend, index) =>  <Card key={index} {...friend}/>)):(<Grid key={this.state.userFriendListData}/>)} 
                                 </div>
                             </div>
                         </div>
@@ -74,6 +81,7 @@ import Card from './Card';
                     </div>
                 </form>
             </div>
+            </fragment>
         );
     }
 

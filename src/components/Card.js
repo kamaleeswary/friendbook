@@ -31,13 +31,14 @@ constructor(props){
     console.log('name', this.props.name);
     console.log('email', this.props.email);
     console.log('address', this.props.address);
-    console.log('contactNo', this.props.contactNo);
+    console.log('contactNo', this.props.userProfileImageUrl);
        return (
          console.log("data inside retuen  ",this.props.userFriendList),
-           <div className="card col-sm-12 mx-auto my-5 recommendation-card" >
-               <img className="card-img-top" src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg
-https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg
-" alt="Profile Picture"></img>
+         <div >
+           <div className="card col-md-2 mx-auto my-5 recommendation-card" >
+           {this.props.userProfileImageUrl ?
+               (<img className="card-img-top" src={this.props.userProfileImageUrl} alt="Profile Picture"></img>):
+               (<image src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt="empty"></image>)}
                <div className="card-body text-center">
                    <h5 className="card-title">
                        <a href="#">{this.props.name}</a>
@@ -45,7 +46,7 @@ https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-
                  <Link to="/next-page2"><button className="btn btn-info">View</button></Link>  
                </div>
            </div>
-
+           </div>
        );
    }
 
