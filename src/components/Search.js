@@ -3,7 +3,7 @@ import axios from 'axios';
 import { timingSafeEqual } from 'crypto';
 
 
-export default class Grid extends React.Component{
+export default class Search extends React.Component{
 
     constructor(props){
         super(props)
@@ -29,10 +29,10 @@ handleChange(event) {
   addFriend(event)
   {
       event.preventDefault();
-      console.log("Add friend",this.props.loginId);
+      console.log("Add friend",this.props.location.state.loginId);
       console.log("friedn id ",this.state.userData1.id);
       console.log("fried name ",this.state.userData1.name);
-      axios.post(`http://172.23.238.179:8080/api/v1/user/addFriend/${this.props.loginId}/${this.state.userData1.id}`)
+      axios.post(`http://172.23.238.179:8080/api/v1/user/addFriend/${this.props.location.state.loginId}/${this.state.userData1.id}`)
       .then(resp=>{
           alert("Friend Added")
         console.log("friends ADDED ",resp);}
@@ -41,7 +41,8 @@ handleChange(event) {
     render(){
        
         return(
-            console.log("navpage to grid ",this.props.userFriendListData),
+            console.log("login User id",this.props.location.state.loginId),
+            console.log("navpage to grid 2",this.props.userFriendListData),
             console.log("user data",this.state.userData1),
             console.log("user data name ",this.state.userData1.name),
             console.log("user data length ",this.state.userData1.length),
@@ -64,7 +65,7 @@ handleChange(event) {
                    </h5>
                 <button onClick={this.addFriend.bind(this)} className="btn btn-info">Add Friend</button>
                </div>
-           </div>):<h4 id="no">No user is present with this name</h4>
+           </div>):<h4>You have no friends right now :</h4>
  }
             </fragment>
         )

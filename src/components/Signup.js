@@ -14,7 +14,8 @@ export default class Signup extends Component{
         editIndex: -1,
         email: "",
         friends:[],
-        contact:""
+        contact:"",
+        url:""
     }}
     handleNewNameChanged(event)
     {
@@ -41,36 +42,50 @@ export default class Signup extends Component{
     handleNewContactChanged(event)
     {
              event.preventDefault();
+             console.log("contact Url ",event.target.value)
+
              this.setState(
                  {
                      contact:event.target.value
                  }
              )
     } 
+    handleNewUrlChanged(event)
+    {
+        event.preventDefault();
+        console.log("image Url ",event.target.value)
+             this.setState(
+                 {
+                     url:event.target.value
+                 }
+             )
+    }
     handleCreateNewUser(event)
     { event.preventDefault()
         const newrestro={
             name:this.state.name,
             email:this.state.email,
             address:this.state.address,
-            contact:this.state.contact,
-            'userProfileImageUrl':"https://upload.wikimedia.org/wikipedia/commons/7/7c/User_font_awesome.svg",
+            contactNo:this.state.contact,
+            userProfileImageUrl:this.state.url,
             friends:[]
         }
-        axios.post('http://localhost:8080/api/v1/user/postAddUser',newrestro)
+        axios.post('http://172.23.238.179:8080/api/v1/user/addUser',newrestro)
         .then(res=>{
         const list=this.state.userlist
         const newuserlist=[...list,res.data]
         alert("successfully Registered")
-        // this.props.history.push({
+        this.props.history.push({
+            pathname:'/'
 
-        // })
+        })
         this.setState({
             userlist:newuserlist,
             name:"",
             email:"",
             address:"",
             contact:"",
+            url:"",
             friends:[]
         });
         
@@ -102,7 +117,11 @@ export default class Signup extends Component{
     <label for="pwd">Contact:</label>
     <input type="text" class="form-control" id="phonenum" type="tel" pattern="^\d{10}$"  onChange={this.handleNewContactChanged.bind(this)}  placeholder="Enter contact number" id="pwd" required/>
   </div>
-  <Link to="/"> <button type="submit" class="btn btn-default" >Submit</button></Link>
+  <div class="form-group">
+    <label for="url">Image Url:</label>
+    <input type="text" class="form-control"   onChange={this.handleNewUrlChanged.bind(this)}  placeholder="Enter Image Url" id="pwd" required/>
+  </div>
+   <button type="submit" class="btn btn-default" >Submit</button>
 </form>
 </div>
 </Container>

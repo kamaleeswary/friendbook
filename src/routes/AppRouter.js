@@ -6,6 +6,8 @@ import App from "../components/App";
 import Grid from "../components/Grid";
 import Recomandation from "../components/Recomandation";
 import Signup from "../components/Signup";
+import Search from "../components/Search";
+
 class AppRouter extends React.Component 
 {
     render  ()
@@ -27,6 +29,7 @@ class AppRouter extends React.Component
                 <Route path= "/Grid" component = {Recomandation}/>
                 <Route path= "/Grid2" component = {Grid}/>
                 <Route path="/signup" component = {Signup}/>
+                <Route path="/GridSearch" component = {Search}/>
             </Switch>
                  
             </BrowserRouter>

@@ -31,20 +31,6 @@ class App extends Component {
   handleChange(event) {
     this.setState({value: event.target.value});
   }
-
-  // handleCreate(event){
-  //   event.preventDefault();
-  //   let user = {
-  //     'email': this.state.value,
-  //     'friends':[]
-  //   };
-  //   axios.post(`http://localhost:8080/api/v1/user/postAddUser`,user)
-  //   .then(response => {
-  //     this.setState((state, props) => ({userData:response.data}));
-  //     console.log(" hi ",this.state.userData)
-  //     alert(" Registered Succesfully ")
-  //   })
-  // }
 handleSubmit(event) {
   event.preventDefault();
   console.log(this.state.value);
@@ -52,7 +38,7 @@ handleSubmit(event) {
     'email': this.state.value
   };
 
-  axios.post(`http://localhost:8080/api/v1/user/postIsUserExists`,user)
+  axios.post(`http://172.23.238.179:8080/api/v1/user/isUserExists`,user)
   .then(response => {
     this.setState((state, props) => ({userData: response.data}));
     if(this.state.userData.email===user.email){
@@ -79,14 +65,6 @@ handleSubmit(event) {
             <FormGroup id="formGroup">
            <Label><i className="fa fa-user-circle" aria-hidden="true"></i> </Label> 
            <hr/>
-           {/* <Label id="iconLabel"> <i className="fa fa-font" aria-hidden="true"></i></Label>
-           <Label id="nameLabel">Name</Label>
-              <Input
-                type="text"
-                name="name"
-                id="exampleName"
-                placeholder="Enter Your name "
-              /> */}
              <Label id="iconLabel"> <i className="fa fa-envelope" aria-hidden="true"></i></Label>
               <Label id="emailLabel">Email</Label>
               <Input
@@ -97,22 +75,7 @@ handleSubmit(event) {
                 value={this.state.value}
                 onChange={this.handleChange}
               />
-               {/* <Label id="iconLabel"> <i className="fa fa-address-card" aria-hidden="true"></i></Label>
-               <Label id="addressLabel">Address</Label>
-              <Input
-                type="text"
-                name="name"
-                id="exampleName"
-                placeholder="Enter Your Address "
-              />
-              <Label><i className="fa fa-mobile" aria-hidden="true"></i></Label>
-               <Label id="contactLabel">Contact No</Label>
-              <Input
-                type="text"
-                name="name"
-                id="exampleName"
-                placeholder="Enter Your contact No "
-              /> */}
+
             </FormGroup>
           </Col>
         <Button className="btn btn-primary"  id="btn">Login</Button>

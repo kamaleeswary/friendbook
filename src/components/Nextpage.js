@@ -9,7 +9,7 @@ import Grid from './Grid';
         super(props)
         this.state={userFriendListData:[],userData:[],value:'',levelid:this.props.location.state.detail.id};
         console.log("seciomf ",this.props.location.state.detail.id)
-        axios.get(`http://localhost:8080/api/v1/user/getUserFriendById/${this.props.location.state.detail.id}`)
+        axios.get(`http://172.23.238.179:8080/api/v1/user/getUserFriendById/${this.props.location.state.detail.id}`)
         .then(userFriendListResp=>{
             console.log("the friend list response from s",userFriendListResp.data)
         this.setState((state, props) => ({userFriendListData: userFriendListResp.data}));
@@ -34,6 +34,16 @@ import Grid from './Grid';
           <fragment>
 {/* <div className="select"> */}
 <br></br>
+
+   <Link to ={{
+    pathname: "/GridSearch", 
+    state: { 
+        loginId: this.props.location.state.detail.id 
+    }
+   }} >
+ <button type="button" className="btn">Search Friend</button>
+</Link>
+{/* <button >Search friend</button><Link> */}
 {/* <div class="custom-select" style={{width:"200px"}}> */}
                <select  class="custom-select" style={{width:"200px"}} id="mySelect" onChange={this.change.bind(this)}>
   <option  >Recommendation</option>
