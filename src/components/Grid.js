@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import {Link } from 'react-router-dom';
+import { timingSafeEqual } from 'crypto';
+
 
 export default class Grid extends React.Component{
 
@@ -24,6 +25,18 @@ export default class Grid extends React.Component{
 handleChange(event) {
     this.setState({value: event.target.value})
   }
+  addFriend(event)
+  {
+      event.preventDefault();
+      console.log("Add friend",this.props.loginId);
+      console.log("friedn id ",this.state.userData1.id);
+      console.log("fried name ",this.state.userData1.name);
+      axios.post(`http://localhost:8080/api/v1/user/postAddFriend/${this.props.loginId}/${this.state.userData1.id}`)
+      .then(resp=>{
+          alert("Friend Added")
+        console.log("friends ADDED ",resp);}
+        )
+  }
     render(){
        
         return(
@@ -44,13 +57,14 @@ handleChange(event) {
   (<img className="card-img-top" src={this.state.userData1.userProfileImageUrl} alt="" style={{ width: "100%" }}></img>):(<img src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt="" style={{ width: "100%" }} />)}
                <div className="card-body text-center">
                    <h5 className="card-title">
-                       <a href="#">{this.state.userData1.name}</a>
+                       <h4>{this.state.userData1.name}</h4>
+                       <h4>{this.state.userData1.email}</h4>
+                       <h4>{this.state.userData1.contactNo}</h4>
                    </h5>
-                 <Link to="/next-page2"><button className="btn btn-info">View</button></Link>  
+                <button onClick={this.addFriend.bind(this)} className="btn btn-info">Add Friend</button>
                </div>
-           </div>):(<h4>hi</h4>)
+           </div>):(<h4>You have no friends right now :(</h4>)
  }
-
             </fragment>
         )
     }

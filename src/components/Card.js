@@ -38,7 +38,7 @@ constructor(props){
            <div className="card col-md-2 mx-auto my-5 recommendation-card" >
            {this.props.userProfileImageUrl ?
                (<img className="card-img-top" src={this.props.userProfileImageUrl} alt="Profile Picture"></img>):
-               (<image src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt="empty"></image>)}
+               (<image className="card-img-top" src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt=""></image>)}
                <div className="card-body text-center">
                    <h5 className="card-title">
                        <a href="#">{this.props.name}</a>

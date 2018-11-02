@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import "./../style/index.scss"
 import axios from 'axios';
+import {Link } from 'react-router-dom'
 // import Map from './Map';
 import {
   Container, Col, Form,
@@ -24,25 +25,26 @@ class App extends Component {
         // this.rowCallback = this.rowCallback.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleCreate=this.handleCreate.bind(this);
+    // this.handleCreate=this.handleCreate.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleCreate(event){
-    event.preventDefault();
-    let user = {
-      'email': this.state.value
-    };
-    axios.post(`http://localhost:8080/api/v1/user/postAddUser`,user)
-    .then(response => {
-      this.setState((state, props) => ({userData:response.data}));
-      console.log(" hi ",this.state.userData)
-      alert(" Registered Succesfully ")
-    })
-  }
+  // handleCreate(event){
+  //   event.preventDefault();
+  //   let user = {
+  //     'email': this.state.value,
+  //     'friends':[]
+  //   };
+  //   axios.post(`http://localhost:8080/api/v1/user/postAddUser`,user)
+  //   .then(response => {
+  //     this.setState((state, props) => ({userData:response.data}));
+  //     console.log(" hi ",this.state.userData)
+  //     alert(" Registered Succesfully ")
+  //   })
+  // }
 handleSubmit(event) {
   event.preventDefault();
   console.log(this.state.value);
@@ -114,7 +116,7 @@ handleSubmit(event) {
             </FormGroup>
           </Col>
         <Button className="btn btn-primary"  id="btn">Login</Button>
-        <Button  className="btn btn-primary" id="btn2"  onClick={this.handleCreate}>SignUp</Button>
+      <Link to="/signup"  ><Button  className="btn btn-primary" id="btn2"  >SignUp</Button></Link>
         </Form>
        
         </div>

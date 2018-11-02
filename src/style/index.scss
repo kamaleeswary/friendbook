@@ -2,6 +2,23 @@
 {
     all: unset;
 }
+#mySelect
+{
+   float: right;
+   margin-right: 5em;
+}
+#rec{
+margin-left: 10em;
+}
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    
+  }
+
+
+
+
 #main
 {
     text-align: center;
@@ -14,6 +31,10 @@
     padding: 2em;
     background-color:cadetblue;
     
+}
+.signup{
+    width:40em;
+    margin-left: 15em;
 }
 #rowdiv
 {

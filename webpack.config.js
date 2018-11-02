@@ -12,10 +12,13 @@ var config = {
    devtool:"cheap-module-source-map",
    module: {
        rules: [
-           {
-               test: /\.(scss)$/,
-               use: ['style-loader', 'css-loader', 'sass-loader']
-           },
+        {
+            test: /\.s?css$/,
+            use: [
+                'style-loader',
+                'css-loader'
+            ]
+        },
            {
                test: /\.js?/,
                include: SRC_DIR,

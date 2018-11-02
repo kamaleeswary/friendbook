@@ -7,7 +7,7 @@ import Grid from './Grid';
  export default class Nextpage extends React.Component {
     constructor(props){
         super(props)
-        this.state={userFriendListData:[],userData:[],value:''};
+        this.state={userFriendListData:[],userData:[],value:'',levelid:this.props.location.state.detail.id};
         console.log("seciomf ",this.props.location.state.detail.id)
         axios.get(`http://localhost:8080/api/v1/user/getUserFriendById/${this.props.location.state.detail.id}`)
         .then(userFriendListResp=>{
@@ -16,17 +16,38 @@ import Grid from './Grid';
         });
         
     }
+    change(event){
+        console.log("dropdownload display");
+        console.log(document.getElementById("mySelect").selectedIndex);
+        let indexValue=document.getElementById("mySelect").selectedIndex;
+        // if(index==1)
+        // {
+            this.props.history.push({  pathname: '/Grid',
+            state: { levelid: this.state.levelid,index:indexValue}})
+       
+    }
     
     render() {
          return (
             
             console.log("in return ", this.props.location.state.detail.id),
           <fragment>
+{/* <div className="select"> */}
+<br></br>
+{/* <div class="custom-select" style={{width:"200px"}}> */}
+               <select  class="custom-select" style={{width:"200px"}} id="mySelect" onChange={this.change.bind(this)}>
+  <option  >Recommendation</option>
+  <option  >Level1</option>
+  <option  >Level2</option>
+</select>
+{/* </div> */}
+{/* </div> */}
+<br></br>
 <div className="container emp-profile">
                 {/* <h1>User Details</h1> */}
                 <form method="post">
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <div className="card">
                             {(this.props.location.state.detail.userProfileImageUrl) ?(<img src={this.props.location.state.detail.userProfileImageUrl} alt="user image" style={{ width: "100%" }} />)
                             :(<img src="https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg" alt="user image" style={{ width: "100%" }}/>)}
@@ -50,7 +71,7 @@ import Grid from './Grid';
                                 <div className="col-md-6">
                                 {console.log("checking user data ",this.state.userData)}
                               {this.state.userFriendListData.length ?
-                                (this.state.userFriendListData.map((friend, index) =>  <Card key={index} {...friend}/>)):(<Grid key={this.state.userFriendListData}/>)} 
+                                (this.state.userFriendListData.map((friend, index) =>  <Card key={index} {...friend}/>)):(<Grid loginId={this.props.location.state.detail.id}/>)} 
                                 </div>
                             </div>
                         </div>
@@ -61,7 +82,7 @@ import Grid from './Grid';
 
                         {/* <h3>Recomondation</h3> */}
 
-                        <h3>Recomondation</h3>
+                        {/* <h3>Recomondation</h3>
                         <div className="container col-md-4">
                             <div className="card">
                                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog' alt="" style={{ width: "100%" }} />
@@ -77,7 +98,7 @@ import Grid from './Grid';
                                 <p><Link to="/next-page2"><button>Contact</button></Link></p>
                             </div>
 
-                        </div>
+                        </div> */}
                     </div>
                 </form>
             </div>
