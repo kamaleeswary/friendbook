@@ -20,6 +20,7 @@ export default class Grid extends React.Component{
       
         axios.post(`http://localhost:8080/api/v1/user/postIsUserExists`,user)
         .then(response => {
+            console.log()
           this.setState((state, props) => ({userData1: response.data}))
         })}
 handleChange(event) {

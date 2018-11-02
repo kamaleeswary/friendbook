@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 import {
     Container
   } from 'reactstrap';
@@ -53,6 +54,7 @@ export default class Signup extends Component{
             email:this.state.email,
             address:this.state.address,
             contact:this.state.contact,
+            'userProfileImageUrl':"https://upload.wikimedia.org/wikipedia/commons/7/7c/User_font_awesome.svg",
             friends:[]
         }
         axios.post('http://localhost:8080/api/v1/user/postAddUser',newrestro)
@@ -60,6 +62,9 @@ export default class Signup extends Component{
         const list=this.state.userlist
         const newuserlist=[...list,res.data]
         alert("successfully Registered")
+        // this.props.history.push({
+
+        // })
         this.setState({
             userlist:newuserlist,
             name:"",
@@ -68,6 +73,7 @@ export default class Signup extends Component{
             contact:"",
             friends:[]
         });
+        
         }
         )
         .catch(err=>{
@@ -96,7 +102,7 @@ export default class Signup extends Component{
     <label for="pwd">Contact:</label>
     <input type="text" class="form-control" id="phonenum" type="tel" pattern="^\d{10}$"  onChange={this.handleNewContactChanged.bind(this)}  placeholder="Enter contact number" id="pwd" required/>
   </div>
-  <button type="submit" class="btn btn-default" >Submit</button>
+  <Link to="/"> <button type="submit" class="btn btn-default" >Submit</button></Link>
 </form>
 </div>
 </Container>
